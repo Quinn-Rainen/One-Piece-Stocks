@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# One Piece Stocks 
 
-## Getting Started
+This project is built upon the idea of trading virtual money('Berries') that represents the values of One Piece characters based on Eichiro Oda's Manga series.
+These artificial values are based on the general reception of a characters strength, wits, and perceived value to the story. The user will be able to track
+a fluctuating stock price for an individual character and be able to react to it as each chapter officially releases. 
 
-First, run the development server:
+**URL:** https://one-piece-stocks-plum.vercel.app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Used
+Next.js --> Framework 
+Supabase --> PostgreSQL  
+Tailwind CSS --> Styling 
+Vercel --> Cloud Deployment 
+GitHub --> Source Control 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## User Requirements
 
-## Learn More
+One Piece Stocks is designed for those who want to 
+engage with the story through a stock market simulation. Users 
+can browse the full character market and view each character's 
+crew affiliation and current stock price in 'Berries'. For those 
+who are not caught up on the latest chapters, a spoiler mode can 
+be enabled to hide recent price movements tied to story events. 
+Each character has a price history chart so users can track how 
+a stock has performed over time. For the admin, they are able to change the 
+market by adding new characters as they become relevant to the story, 
+updating prices to reflect what happens in each chapter release, 
+and removing characters from the market when necessary.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Future Goals
+- User authentication and personal accounts
+- Call and put options trading with fake Berry currency
+- Portfolio tracker showing each user's holdings
+- Character stock comparison view
+- Admin panel password protection via Supabase RLS
+- Automatic price fluctuation algorithm between chapter releases
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Local Setup
+1. Clone the repo
+2. Run `npm install`
+3. Create `.env.local` with your Supabase credentials 
+4. Run `npm run dev`
