@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   description: "The Grand Line Stock Exchange",
 };
 
+// Easier to modify the ticker names, in the future would be nice to have it dynamically grab from the database, however I am out of time
+const tickerItems = "⚓ LUFFY +2.1% &nbsp;&nbsp;&nbsp; ☠ BLACKBEARD -1.4% &nbsp;&nbsp;&nbsp; ⚔ ZORO +0.8% &nbsp;&nbsp;&nbsp; 🗺 NAMI -0.3% &nbsp;&nbsp;&nbsp; 👑 SHANKS +3.2% &nbsp;&nbsp;&nbsp; 💀 WHITEBEARD +5.1% &nbsp;&nbsp;&nbsp; 🔥 ACE -2.2% &nbsp;&nbsp;&nbsp; 🐆 ROB LUCCI +1.1% &nbsp;&nbsp;&nbsp; 🌊 JINBE +0.6% &nbsp;&nbsp;&nbsp; ⚡ ENEL -3.0% &nbsp;&nbsp;&nbsp;";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,13 +32,16 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <div className="ticker-wrapper">
-          <div className="ticker-content">
-            {/* Something neat I learned that forces spaces. Which is perfect for this scrolling */}
-            ⚓ LUFFY +2.1% &nbsp;&nbsp;&nbsp; ☠ BLACKBEARD -1.4% &nbsp;&nbsp;&nbsp;
-            ⚔ ZORO +0.8% &nbsp;&nbsp;&nbsp; 🗺 NAMI -0.3% &nbsp;&nbsp;&nbsp;
-            👑 SHANKS +3.2% &nbsp;&nbsp;&nbsp; ⚓ LUFFY +2.1% &nbsp;&nbsp;&nbsp;
-            ☠ BLACKBEARD -1.4% &nbsp;&nbsp;&nbsp; ⚔ ZORO +0.8% &nbsp;&nbsp;&nbsp;
-            🗺 NAMI -0.3% &nbsp;&nbsp;&nbsp; 👑 SHANKS +3.2% &nbsp;&nbsp;&nbsp;
+          <div className="ticker-track">
+            <span
+              className="ticker-content"
+              //Future Me: this is called this to prevent XSS, but since I'm not doing a form its safe, probably
+              dangerouslySetInnerHTML={{ __html: tickerItems }}
+            />
+            <span
+              className="ticker-content"
+              dangerouslySetInnerHTML={{ __html: tickerItems }}
+            />
           </div>
         </div>
         {children}
