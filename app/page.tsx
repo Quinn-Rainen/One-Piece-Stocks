@@ -15,13 +15,16 @@ export default async function Home() {
       <h1 className="text-3xl font-bold mb-6">One Piece Stocks</h1>
       <div className="grid grid-cols-1 gap-4">
         {characters?.map(character => (
-  <a href={`/character/${character.id}`} key={character.id} 
-     className="border p-4 rounded-lg block hover:border-green-500 transition-colors">
-    <h2 className="text-xl font-bold">{character.name}</h2>
-    <p className="text-gray-500">{character.crew}</p>
-    <p className="text-green-500 font-bold">💰 {character.current_price} Berries</p>
-  </a>
-))}
+          <a
+            href={`/character/${character.id}`}
+            key={character.id}
+            className="border p-4 rounded-lg block hover:border-green-500 transition-colors"
+          >
+            <h2 className="text-xl font-bold">{character.name}</h2>
+            <p className="text-gray-500">{character.crew}</p>
+            <p className="text-green-500 font-bold">💰 {character.current_price} Berries</p>
+          </a>
+        ))}
       </div>
     </main>
   )
