@@ -1,122 +1,145 @@
-'use client'
-import { useState, useEffect } from 'react'
+"use client";
+import { useState, useEffect } from "react";
 
 export default function AdminPage() {
-  const [characters, setCharacters] = useState([])
-  const [name, setName] = useState('')
-  const [crew, setCrew] = useState('')
-  const [price, setPrice] = useState('')
-  const [editingId, setEditingId] = useState(null)
-  const [editingPrice, setEditingPrice] = useState('')
+  const [characters, setCharacters] = useState([]);
+  const [name, setName] = useState("");
+  const [crew, setCrew] = useState("");
+  const [price, setPrice] = useState("");
+  const [editingId, setEditingId] = useState(null);
+  const [editingPrice, setEditingPrice] = useState("");
 
-  
   async function fetchCharacters() {
-    const res = await fetch('/api/characters')
-    const data = await res.json()
-    setCharacters(data)
+    const res = await fetch("/api/characters");
+    const data = await res.json();
+    setCharacters(data);
   }
 
   useEffect(() => {
-    fetchCharacters()
-  }, [])
+    fetchCharacters();
+  }, []);
 
-  // Add a new character
   async function handleAdd() {
-    if (!name || !crew || !price) return alert('Fill in all fields')
-    await fetch('/api/characters', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, crew, current_price: Number(price) })
-    })
-    setName('')
-    setCrew('')
-    setPrice('')
-    fetchCharacters()
+    if (!name || !crew || !price) return alert("Fill in all fields");
+    await fetch("/api/characters", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, crew, current_price: Number(price) }),
+    });
+    setName("");
+    setCrew("");
+    setPrice("");
+    fetchCharacters();
   }
 
-  // changing price
   async function handleUpdate(id) {
     await fetch(`/api/characters/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ current_price: Number(editingPrice) })
-    })
-    setEditingId(null)
-    setEditingPrice('')
-    fetchCharacters()
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ current_price: Number(editingPrice) }),
+    });
+    setEditingId(null);
+    setEditingPrice("");
+    fetchCharacters();
   }
 
-  
   async function handleDelete(id) {
-    if (!confirm('Are you sure?')) return
-    await fetch(`/api/characters/${id}`, { method: 'DELETE' })
-    fetchCharacters()
+    if (!confirm("Are you sure?")) return;
+    await fetch(`/api/characters/${id}`, { method: "DELETE" });
+    fetchCharacters();
   }
 
   return (
-    <main className="p-8 max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8">Admin Panel</h1>
+    <div className="max-w-3xl mx-auto px-6 py-8">
+      <div className="border-b-2 border-white pb-4 mb-2 text-center">
+        <p className="text-xs tracking-widest uppercase text-gray-400 mb-1">
+          Internal Operations
+        </p>
+        <h1 className="text-4xl font-black tracking-tight">
+          THE GRAND LINE TIMES
+        </h1>
+        <p className="text-xs tracking-widest uppercase text-gray-400 mt-1">
+          Admin Panel — Market Management
+        </p>
+      </div>
+      <div className="border-b border-gray-600 mb-8" />
 
-      {/* Admin Character Form */}
-      <div className="border p-6 rounded-lg mb-8">
-        <h2 className="text-xl font-bold mb-4">Add New Character</h2>
+      <a
+        href="/"
+        className="text-xs uppercase tracking-widest text-gray-400 hover:text-white mb-8 block"
+      >
+        ← Back to Market
+      </a>
+
+      {/* Add crew */}
+      <div className="border border-gray-700 p-6 mb-10">
+        <h2 className="text-xs uppercase tracking-widest text-gray-400 mb-4">
+          List New Character
+        </h2>
         <div className="flex flex-col gap-3">
           <input
-            className="border p-2 rounded bg-transparent"
+            className="bg-transparent border border-gray-600 p-2 rounded text-white placeholder-gray-500 focus:border-white outline-none"
             placeholder="Character name"
             value={name}
-            onChange={e => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
           <input
-            className="border p-2 rounded bg-transparent"
+            className="bg-transparent border border-gray-600 p-2 rounded text-white placeholder-gray-500 focus:border-white outline-none"
             placeholder="Crew"
             value={crew}
-            onChange={e => setCrew(e.target.value)}
+            onChange={(e) => setCrew(e.target.value)}
           />
           <input
-            className="border p-2 rounded bg-transparent"
-            placeholder="Starting price"
+            className="bg-transparent border border-gray-600 p-2 rounded text-white placeholder-gray-500 focus:border-white outline-none"
+            placeholder="Starting price in Berries"
             type="number"
             value={price}
-            onChange={e => setPrice(e.target.value)}
+            onChange={(e) => setPrice(e.target.value)}
           />
           <button
-            className="bg-green-600 text-white p-2 rounded hover:bg-green-700"
+            className="border border-white text-white px-4 py-2 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-colors"
             onClick={handleAdd}
           >
-            Add Character
+            Add to Exchange
           </button>
         </div>
       </div>
 
-      {/* List of every character in the database, showing all their stats and stuff */}
-      <h2 className="text-xl font-bold mb-4">All Characters</h2>
-      <div className="flex flex-col gap-4">
-        {characters?.map(character => (
-          <div key={character.id} className="border p-4 rounded-lg flex justify-between items-center">
+      <h2 className="text-xs uppercase tracking-widest text-gray-400 mb-4">
+        All Listed Characters
+      </h2>
+      <div className="flex flex-col gap-3">
+        {characters?.map((character) => (
+          <div
+            key={character.id}
+            className="border border-gray-700 px-5 py-4 flex justify-between items-center"
+          >
             <div>
-              <h3 className="font-bold">{character.name}</h3>
-              <p className="text-gray-400">{character.crew}</p>
-              {/* Adding the emoji of money incase it isn't clear what "Berries" means */}
-              <p className="text-green-500">💰 {character.current_price} Berries</p>
+              <p className="font-black">{character.name}</p>
+              <p className="text-gray-400 text-xs uppercase tracking-widest mt-1">
+                {character.crew}
+              </p>
+              <p className="text-green-400 text-sm mt-1">
+                {Number(character.current_price).toLocaleString()} Berries
+              </p>
             </div>
             <div className="flex flex-col gap-2 items-end">
               {editingId === character.id ? (
-                <div className="flex gap-2">
+                <div className="flex gap-2 items-center">
                   <input
-                    className="border p-1 rounded bg-transparent w-24"
+                    className="bg-transparent border border-gray-600 p-1 rounded text-white w-24 text-sm outline-none"
                     type="number"
                     value={editingPrice}
-                    onChange={e => setEditingPrice(e.target.value)}
+                    onChange={(e) => setEditingPrice(e.target.value)}
                   />
                   <button
-                    className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+                    className="text-xs border border-green-500 text-green-400 px-3 py-1 hover:bg-green-500 hover:text-black transition-colors"
                     onClick={() => handleUpdate(character.id)}
                   >
                     Save
                   </button>
                   <button
-                    className="bg-gray-600 text-white px-3 py-1 rounded hover:bg-gray-700"
+                    className="text-xs border border-gray-600 text-gray-400 px-3 py-1 hover:bg-gray-600 transition-colors"
                     onClick={() => setEditingId(null)}
                   >
                     Cancel
@@ -124,22 +147,25 @@ export default function AdminPage() {
                 </div>
               ) : (
                 <button
-                  className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
-                  onClick={() => { setEditingId(character.id); setEditingPrice(character.current_price) }}
+                  className="text-xs border border-gray-600 text-gray-300 px-3 py-1 hover:border-white hover:text-white transition-colors"
+                  onClick={() => {
+                    setEditingId(character.id);
+                    setEditingPrice(character.current_price);
+                  }}
                 >
                   Update Price
                 </button>
               )}
               <button
-                className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+                className="text-xs border border-red-800 text-red-400 px-3 py-1 hover:bg-red-800 hover:text-white transition-colors"
                 onClick={() => handleDelete(character.id)}
               >
-                Delete
+                Remove
               </button>
             </div>
           </div>
         ))}
       </div>
-    </main>
-  )
+    </div>
+  );
 }
