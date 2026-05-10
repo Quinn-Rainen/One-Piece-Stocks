@@ -138,6 +138,14 @@ export default async function Home() {
           );
         })}
       </div>
+      <div className="text-center mt-12 border-t border-gray-700 pt-6">
+        <a
+          href="/admin"
+          className="text-xs uppercase tracking-widest text-gray-400 hover:text-white transition-colors"
+        >
+          ⚙ Admin Panel — Manage Characters & Prices
+        </a>
+      </div>
     </div>
   );
 }
