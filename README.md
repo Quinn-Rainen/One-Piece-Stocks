@@ -2,7 +2,8 @@
 
 This project is built upon the idea of trading virtual money('Berries') that represents the values of One Piece characters based on Eichiro Oda's Manga series.
 These artificial values are based on the general reception of a characters strength, wits, and perceived value to the story. The user will be able to track
-a fluctuating stock price for an individual character and be able to react to it as each chapter officially releases.
+a fluctuating stock price for an individual character and be able to react to it as each chapter officially releases. At the bottom of the main page there is a link
+to the admin panel where you are able to list, add, update, and delete pirates for the stock market. 
 
 **URL:** https://one-piece-stocks-plum.vercel.app
 
@@ -24,7 +25,6 @@ who are not caught up on the latest chapters, a spoiler mode can
 be enabled to hide recent price movements tied to story events.
 Each character has a price history chart so users can track how
 a stock has performed over time. For the admin, they are able to change the market by adding new characters as they become relevant to the story, updating prices to reflect what happens in each chapter release, and removing characters from the market when necessary.
-
 
 
 # Future Goals
