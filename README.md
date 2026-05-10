@@ -7,14 +7,14 @@ a fluctuating stock price for an individual character and be able to react to it
 **URL:** https://one-piece-stocks-plum.vercel.app
 
 
-## Tech Used
+# Tech Used
 
 - Next.js --> Framework
 - Supabase(PostgreSQL) --> Database  
 - Tailwind CSS --> Styling
 - Vercel --> Cloud Deployment
 
-## User Requirements
+# User Requirements
 
 One Piece Stocks is designed for those who want to
 engage with the story through a stock market simulation. Users
@@ -27,7 +27,7 @@ a stock has performed over time. For the admin, they are able to change the mark
 
 
 
-## Future Goals
+# Future Goals
 
 - User authentication and personal accounts
 - Call and put options trading with fake Berry currency
@@ -38,7 +38,7 @@ a stock has performed over time. For the admin, they are able to change the mark
 
 ---
 
-## Local Setup
+# Local Setup
 
 1. Clone the repo
 2. Run `npm install`
