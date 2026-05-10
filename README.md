@@ -6,15 +6,13 @@ a fluctuating stock price for an individual character and be able to react to it
 
 **URL:** https://one-piece-stocks-plum.vercel.app
 
----
 
 ## Tech Used
 
--Next.js --> Framework
--Supabase(PostgreSQL) --> Database  
--Tailwind CSS --> Styling
--Vercel --> Cloud Deployment
--GitHub --> Source Control
+- Next.js --> Framework
+- Supabase(PostgreSQL) --> Database  
+- Tailwind CSS --> Styling
+- Vercel --> Cloud Deployment
 
 ## User Requirements
 
@@ -27,7 +25,7 @@ be enabled to hide recent price movements tied to story events.
 Each character has a price history chart so users can track how
 a stock has performed over time. For the admin, they are able to change the market by adding new characters as they become relevant to the story, updating prices to reflect what happens in each chapter release, and removing characters from the market when necessary.
 
----
+
 
 ## Future Goals
 
