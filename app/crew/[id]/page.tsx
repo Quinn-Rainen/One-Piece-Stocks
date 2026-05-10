@@ -1,4 +1,5 @@
 import { supabase } from "../../../lib/supabase";
+import CrewChart from "./CrewChart";
 
 export const revalidate = 0;
 
@@ -21,7 +22,7 @@ export default async function CrewPage({
   }
 
   return (
-    <div className="p-8">
+    <div className="p-8 max-w-4xl mx-auto">
       <a href="/" className="text-blue-400 hover:underline mb-4 block">
         ← Back
       </a>
@@ -30,6 +31,12 @@ export default async function CrewPage({
         {characters?.length} character{characters?.length !== 1 ? "s" : ""}{" "}
         listed
       </p>
+
+      <div className="border p-6 rounded-lg mb-8">
+        <h2 className="text-lg font-bold mb-4">Price History</h2>
+        <CrewChart characters={characters ?? []} />
+      </div>
+
       <div className="flex flex-col gap-4">
         {characters?.map((c) => (
           <div key={c.id} className="border p-4 rounded-lg">
